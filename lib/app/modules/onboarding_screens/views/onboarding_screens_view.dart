@@ -102,23 +102,28 @@ class OnboardingScreensView extends GetView<OnboardingScreensController> {
               SizedBox(
                 height: 60,
               ),
-              Center(
-                child: Container(
-                  height: 56,
-                  width: 240,
-                  child: Center(
-                    child: Text('Male',
-                        style: TextStyle(
-                            color: Colors.pink,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'NunitoSans')),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+                child: Center(
+                  child: Container(
+                    height: 56,
+                    width: 240,
+                    child: Center(
+                      child: Text('Male',
+                          style: TextStyle(
+                              color: Colors.pink,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'NunitoSans')),
+                    ),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Color.fromRGBO(198, 190, 209, 1), width: 2),
+                        // color: Color.fromRGBO(198, 190, 209, 1),
+                        borderRadius: BorderRadius.circular(24)),
                   ),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Color.fromRGBO(198, 190, 209, 1), width: 2),
-                      // color: Color.fromRGBO(198, 190, 209, 1),
-                      borderRadius: BorderRadius.circular(24)),
                 ),
               ),
               SizedBox(

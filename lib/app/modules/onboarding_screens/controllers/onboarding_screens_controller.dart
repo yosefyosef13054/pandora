@@ -20,6 +20,16 @@ class OnboardingScreensController extends GetxController {
         onStatus: (val) {
           print('onStatus: $val');
           isListening.value = val == 'notListening' ? false : true;
+          // Future.delayed(Duration(seconds: 2), () {
+          //   if (text.value.substring(0) == 'm') {
+          //     print('mele');
+          //   }
+          // });
+          // if (isListening.value == false) {
+          //   if (text.value.substring(0) == 'm') {
+          //     print('mele');
+          //   }
+          // }
         },
         onError: (val) {
           isListening.value = false;
@@ -40,7 +50,20 @@ class OnboardingScreensController extends GetxController {
     } else {
       isListening.value = false;
       speech.stop();
+      // print(text.value);
+      // Future.delayed(Duration(seconds: 2), () {
+      //   if (text.value.substring(0) == 'm') {
+      //     print('mele');
+      //   }
+      // });
     }
+    Future.delayed(Duration(seconds: 7), () {
+      print(text.value);
+      print(text.value.toString().substring(0));
+      if (text.value.substring(0) == 'm') {
+        print('mele');
+      }
+    });
   }
 
   ///sound to text vars

@@ -19,7 +19,7 @@ class OnboardingScreensView extends GetView<OnboardingScreensController> {
       floatingActionButton: Obx(
         () => AvatarGlow(
           animate: controller.isListening.value,
-          glowColor: Theme.of(context).primaryColor,
+          glowColor: Color.fromRGBO(239, 201, 0, 1),
           endRadius: 75.0,
           duration: const Duration(milliseconds: 2000),
           repeatPauseDuration: const Duration(milliseconds: 100),
@@ -40,12 +40,14 @@ class OnboardingScreensView extends GetView<OnboardingScreensController> {
               ),
               Center(
                 child: Text(
-                  'Pandora',
+                  'Rumpel',
                   style: TextStyle(
-                      color: controller.maincolor,
+                      //    color: Colors.yellow[700],
+                      color: Color.fromRGBO(239, 201, 0, 1),
+                      //   color: Theme.of(context).primaryColor,
                       fontSize: 61,
                       fontWeight: FontWeight.w400,
-                      fontFamily: 'Chewy'),
+                      fontFamily: 'BerkshireSwash'),
                 ),
               ),
               SizedBox(

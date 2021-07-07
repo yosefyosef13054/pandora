@@ -28,9 +28,9 @@ flutter:
 
 # see https://flutter.dev/custom-fonts/#from-packages
   fonts:
-    - family: Chewy
+    - family: BerkshireSwash
       fonts:
-        - asset: assets/fonts/Chewy-Regular.ttf
+        - asset: assets/fonts/BerkshireSwash-Regular.ttf
         
     - family: NunitoSans
       fonts:

@@ -9,7 +9,8 @@ void main() {
     GetMaterialApp(
       title: "Application",
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.yellow,
+
         // visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: AppPages.INITIAL,

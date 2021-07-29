@@ -1,14 +1,20 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreenController extends GetxController {
   //TODO: Implement SplashScreenController
 
   final count = 0.obs;
   @override
-  void onInit() {
-    print('hello');
+  void onInit() async {
+    String token = "";
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    token = prefs.getString("token");
+
     Future.delayed(Duration(seconds: 3), () {
-      Get.offNamed('/onboarding-screens');
+      prefs.containsKey("token") == false
+          ? Get.offNamed('/onboarding-screens')
+          : Get.offNamed('/home');
       print('hello');
     });
 

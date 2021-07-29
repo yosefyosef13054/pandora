@@ -4,6 +4,10 @@ import 'package:pandora/app/modules/home/bindings/home_binding.dart';
 import 'package:pandora/app/modules/home/views/home_view.dart';
 import 'package:pandora/app/modules/onboarding_screens/bindings/onboarding_screens_binding.dart';
 import 'package:pandora/app/modules/onboarding_screens/views/onboarding_screens_view.dart';
+import 'package:pandora/app/modules/room_screen/bindings/room_screen_binding.dart';
+import 'package:pandora/app/modules/room_screen/views/room_screen_view.dart';
+import 'package:pandora/app/modules/sittings/bindings/sittings_binding.dart';
+import 'package:pandora/app/modules/sittings/views/sittings_view.dart';
 import 'package:pandora/app/modules/splash_screen/bindings/splash_screen_binding.dart';
 import 'package:pandora/app/modules/splash_screen/views/splash_screen_view.dart';
 
@@ -29,6 +33,16 @@ class AppPages {
       name: _Paths.ONBOARDING_SCREENS,
       page: () => OnboardingScreensView(),
       binding: OnboardingScreensBinding(),
+    ),
+    GetPage(
+      name: _Paths.SITTINGS,
+      page: () => SittingsView(),
+      binding: SittingsBinding(),
+    ),
+    GetPage(
+      name: _Paths.ROOM_SCREEN,
+      page: () => RoomScreenView(),
+      binding: RoomScreenBinding(),
     ),
   ];
 }

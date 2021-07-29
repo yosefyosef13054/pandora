@@ -7,14 +7,29 @@ environment:
 
 dependencies: 
   cupertino_icons: ^1.0.2
-  get_cli: ^1.5.0
+  get_cli: 
   speech_to_text: ^2.3.0
   highlight_text: ^0.7.2
   avatar_glow: ^1.2.0
+  assets_audio_player: ^3.0.2
+  record:
+  stop_watch_timer:
+  permission_handler:
+  toast:
+  shared_preferences: 
+  firebase_analytics: ^5.0.11
+  flutter_local_notifications: ^4.0.1
+  socket_io_client: ^0.9.12
+  firebase_core: ^0.5.3
+  firebase_messaging: 
+  fluttertoast: ^7.1.6
+  dio: 
+
 
   get: 4.1.4
   flutter: 
     sdk: flutter
+  flutter_svg: ^0.22.0
 
 dev_dependencies: 
   flutter_test: 

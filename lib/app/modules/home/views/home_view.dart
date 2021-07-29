@@ -1,5 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
@@ -24,131 +25,157 @@ class HomeView extends GetView<HomeController> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: 25,
-              ),
               Container(
-                height: 70,
-                width: width,
-                color: Color.fromRGBO(16, 182, 182, 0.08),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                height: height * .23,
+                child: Column(
                   children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        children: [
-                          Image.asset('assets/images/smallFaceIcon.png'),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            'remy08',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        children: [
-                          Image.asset('assets/images/Vector.png'),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            '100',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 32,
-              ),
-              Obx(
-                () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        controller.selectTap(1);
-                      },
-                      child: Column(
-                        children: [
-                          Text(
-                            'TRENDS',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'NunitoSans'),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          controller.selected.value == 1
-                              ? Container(
-                                  width: 56,
-                                  height: 2,
-                                  color: Color.fromRGBO(215, 70, 239, 1),
-                                )
-                              : Container(),
-                        ],
-                      ),
+                    SizedBox(
+                      height: 25,
                     ),
                     InkWell(
                       onTap: () {
-                        controller.selectTap(2);
+                        Get.toNamed('/sittings');
                       },
-                      child: Column(
-                        children: [
-                          Text(
-                            'DISCOVER',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'NunitoSans'),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          controller.selected.value == 2
-                              ? Container(
-                                  width: 56,
-                                  height: 2,
-                                  color: Color.fromRGBO(215, 70, 239, 1),
-                                )
-                              : Container(),
-                        ],
+                      child: Container(
+                        height: 70,
+                        width: width,
+                        color: Color.fromRGBO(255, 248, 243, 1),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 15),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/images/smallFaceIcon.svg',
+                                    placeholderBuilder:
+                                        (BuildContext context) => Container(
+                                            padding: const EdgeInsets.all(30.0),
+                                            child:
+                                                const CircularProgressIndicator()),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    'remy08',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 15),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/images/star.svg',
+                                    placeholderBuilder:
+                                        (BuildContext context) => Container(
+                                            padding: const EdgeInsets.all(30.0),
+                                            child:
+                                                const CircularProgressIndicator()),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    '100',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        controller.selectTap(3);
-                      },
-                      child: Column(
+                    SizedBox(
+                      height: 32,
+                    ),
+                    Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(
-                            'MY ROOMS',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'NunitoSans'),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          controller.selected.value == 3
-                              ? Container(
-                                  width: 56,
+                          InkWell(
+                            onTap: () {
+                              controller.selectTap(1);
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  'TRENDS',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'NunitoSans'),
+                                ),
+                                SizedBox(
                                   height: 2,
-                                  color: Color.fromRGBO(215, 70, 239, 1),
-                                )
-                              : Container(),
+                                ),
+                                controller.selected.value == 1
+                                    ? Container(
+                                        width: 56,
+                                        height: 2,
+                                        color: Color.fromRGBO(215, 70, 239, 1),
+                                      )
+                                    : Container(),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              controller.selectTap(2);
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  'DISCOVER',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'NunitoSans'),
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                controller.selected.value == 2
+                                    ? Container(
+                                        width: 56,
+                                        height: 2,
+                                        color: Color.fromRGBO(215, 70, 239, 1),
+                                      )
+                                    : Container(),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              controller.selectTap(3);
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  'MY ROOMS',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'NunitoSans'),
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                controller.selected.value == 3
+                                    ? Container(
+                                        width: 56,
+                                        height: 2,
+                                        color: Color.fromRGBO(215, 70, 239, 1),
+                                      )
+                                    : Container(),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -157,7 +184,7 @@ class HomeView extends GetView<HomeController> {
               ),
               SingleChildScrollView(
                 child: Container(
-                  height: height * .7,
+                  height: height * .75,
                   child: SingleChildScrollView(
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -170,6 +197,7 @@ class HomeView extends GetView<HomeController> {
                             // Get.to(UsedAccessoriesDetailsView(
                             //     url: controller.http.baseUrlForImages,
                             //     item: controller.usedAccessories[index]));
+                            Get.toNamed('/room-screen');
                           },
                           child: Center(
                             child: Container(
@@ -182,8 +210,8 @@ class HomeView extends GetView<HomeController> {
                                 boxShadow: [
                                   BoxShadow(
                                     color: Color.fromRGBO(44, 39, 124, 0.1),
-                                    blurRadius: 20,
-                                    offset: Offset(0, 3),
+                                    blurRadius: 15,
+                                    offset: Offset(0, 0),
                                   ),
                                 ],
                                 borderRadius: BorderRadius.circular(15),
@@ -241,8 +269,21 @@ class HomeView extends GetView<HomeController> {
                                         ],
                                       ),
                                       Spacer(),
-                                      Image.asset(
-                                          'assets/images/playButton.png'),
+                                      InkWell(
+                                        onTap: () {
+                                          // Get.back();
+                                        },
+                                        child: SvgPicture.asset(
+                                          'assets/images/playIcon.svg',
+                                          placeholderBuilder: (BuildContext
+                                                  context) =>
+                                              Container(
+                                                  padding: const EdgeInsets.all(
+                                                      30.0),
+                                                  child:
+                                                      const CircularProgressIndicator()),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   SizedBox(
@@ -290,6 +331,22 @@ class HomeView extends GetView<HomeController> {
                                             fontWeight: FontWeight.w400,
                                             fontFamily: 'NunitoSans'),
                                       ),
+                                      Spacer(),
+                                      Text(
+                                        '302',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color.fromRGBO(
+                                                150, 143, 160, 1),
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'NunitoSans'),
+                                      ),
+                                      SizedBox(width: 2),
+                                      Icon(
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                        size: 20,
+                                      )
                                     ],
                                   )
                                 ],
@@ -309,12 +366,13 @@ class HomeView extends GetView<HomeController> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AvatarGlow(
         animate: true,
-        glowColor: Color.fromRGBO(239, 201, 0, 1),
+        glowColor: Color.fromRGBO(215, 70, 239, 1),
         endRadius: 75.0,
         duration: const Duration(milliseconds: 2000),
         repeatPauseDuration: const Duration(milliseconds: 100),
         repeat: true,
         child: FloatingActionButton(
+          backgroundColor: Color.fromRGBO(215, 70, 239, 1),
           onPressed: () {
             print('add');
           },

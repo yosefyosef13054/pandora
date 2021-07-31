@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:highlight_text/highlight_text.dart';
+import 'package:pandora/app/modules/onboarding_screens/controllers/signUpModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import '../../dio_api.dart';
@@ -146,15 +148,24 @@ class OnboardingScreensController extends GetxController {
   }
 
 /////submit the data to the backnd
-  void submit() async {
-    var response = await http.postUrl('user/signup', {
-      "username": slectedusername.value,
-      "gender": slectedgender.value,
-      "age": slectedage.value,
-      "device_token": "adbjshgdfs"
-    });
+  void submit(context) async {
+    try {
+      var response = await http.postUrl('user/signup', {
+        "username": slectedusername.value,
+        "gender": slectedgender.value,
+        "age": slectedage.value,
+        "device_token": "adbjshgdfs"
+      });
+      print(response.data);
 
-    print(response.data);
+      SignUpRequest userdata = SignUpRequest.fromJson(response.data);
+      print(userdata.data.user.token);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', userdata.data.user.token);
+      Navigator.restorablePushReplacementNamed(context, '/home');
+    } catch (e) {
+      print(e);
+    }
   }
 
   void getusersData() async {
@@ -191,6 +202,92 @@ class OnboardingScreensController extends GetxController {
   @override
   void onClose() {}
   void increment() => count.value++;
+
+  void show_create_room(BuildContext ctx, width, height) {
+    showModalBottomSheet(
+        elevation: 10,
+        backgroundColor: Colors.transparent,
+        context: ctx,
+        builder: (ctx) => Container(
+              width: 300,
+              height: 1000,
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      listen();
+                    },
+                    child: Text(
+                      'New Subject',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'NunitoSans'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  1 == 1
+                      ? Text(
+                          'Press and hold to say subject in maximum 3  words.',
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(150, 143, 160, 1),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'NunitoSans'),
+                        )
+                      : Text(
+                          'Please clarify the name of your room.',
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(150, 143, 160, 1),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'NunitoSans'),
+                        ),
+                  Obx(
+                    () => Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(
+                              30.0, 30.0, 30.0, 150.0),
+                          child: TextHighlight(
+                            text: text.value,
+                            words: highlights,
+                            textStyle: const TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Obx(
+                    () => IconButton(
+                      // backgroundColor: Color.fromRGBO(215, 70, 239, 1),
+                      onPressed: () => listen(),
+                      icon: Container(
+                          height: 200,
+                          width: 200,
+                          child: Icon(
+                              isListening.value ? Icons.mic : Icons.mic_none)),
+                    ),
+                  ),
+                ],
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24)),
+                color: Color.fromRGBO(52, 51, 75, 1),
+              ),
+            ));
+  }
 }
 
 

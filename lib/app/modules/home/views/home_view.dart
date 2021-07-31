@@ -374,7 +374,8 @@ class HomeView extends GetView<HomeController> {
         child: FloatingActionButton(
           backgroundColor: Color.fromRGBO(215, 70, 239, 1),
           onPressed: () {
-            print('add');
+            controller.show_create_room(context, width, height);
+            // controller.submit(context);
           },
           child: Icon(Icons.add),
         ),

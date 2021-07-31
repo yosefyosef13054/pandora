@@ -28,7 +28,7 @@ class RoomScreenView extends GetView<RoomScreenController> {
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
-          color: Color.fromRGBO(253, 252, 255, 1),
+          color: Color.fromRGBO(240, 240, 248, 1),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -371,13 +371,13 @@ class RoomScreenView extends GetView<RoomScreenController> {
                         height: 55,
                         width: width * .85,
                         decoration: BoxDecoration(
-                          boxShadow: [
-                            // BoxShadow(
-                            //   color: Color.fromRGBO(44, 39, 124, 0.1),
-                            //   blurRadius: 15,
-                            //   offset: Offset(0, 0),
-                            // ),
-                          ],
+                          // boxShadow: [
+                          //   // BoxShadow(
+                          //   //   color: Color.fromRGBO(44, 39, 124, 0.1),
+                          //   //   blurRadius: 15,
+                          //   //   offset: Offset(0, 0),
+                          //   // ),
+                          // ],
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(8),
                               topLeft: Radius.circular(8),

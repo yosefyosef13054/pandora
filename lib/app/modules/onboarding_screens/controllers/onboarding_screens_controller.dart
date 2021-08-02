@@ -149,22 +149,25 @@ class OnboardingScreensController extends GetxController {
 
 /////submit the data to the backnd
   void submit(context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String pushtoken = prefs.getString("pushtoken");
+    print(pushtoken);
     try {
       var response = await http.postUrl('user/signup', {
         "username": slectedusername.value,
         "gender": slectedgender.value,
         "age": slectedage.value,
-        "device_token": "adbjshgdfs"
+        "device_token": pushtoken
       });
       print(response.data);
-
+      print(pushtoken);
       SignUpRequest userdata = SignUpRequest.fromJson(response.data);
       print(userdata.data.user.token);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+
       prefs.setString('token', userdata.data.user.token);
       Navigator.restorablePushReplacementNamed(context, '/home');
     } catch (e) {
-      print(e);
+      print(e.response.data);
     }
   }
 

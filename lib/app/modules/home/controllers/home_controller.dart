@@ -11,6 +11,7 @@ import 'package:highlight_text/highlight_text.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import '../../dio_api.dart';
+import 'homeModel.dart';
 
 class HomeController extends GetxController {
   final http = Get.find<HttpService>();
@@ -19,6 +20,19 @@ class HomeController extends GetxController {
   var text = 'Press the button and start speaking'.obs;
   double confidence = 1.0;
   var confirmtext = false.obs;
+  HomeData data;
+  var loading = false.obs;
+  void getHomeData() async {
+    loading.value = true;
+    try {
+      var response = await http.get('home/rooms');
+      print(response.data);
+      data = HomeData.fromJson(response.data);
+      loading.value = false;
+    } catch (e) {}
+    // await getcarYears(carModels[0].id);
+    update();
+  }
 
   void listen() async {
     if (!isListening.value) {
@@ -131,17 +145,17 @@ class HomeController extends GetxController {
 
   void submit(context) async {
     changeIndex();
-    print(colors[index.value]);
+    // print(colors[index.value]);
     try {
-      var response = await http.postUrl(
-          'create/room', {"name": text.value, "color": index.value.toString()});
+      var response =
+          await http.postUrl('create/room', {"name": text.value, "color": 1});
       print(response.data);
 
       //    SignUpRequest userdata = SignUpRequest.fromJson(response.data);
 
       Navigator.restorablePushReplacementNamed(context, '/home');
     } catch (e) {
-      print(e);
+      print(e.response.data);
     }
   }
 
@@ -257,6 +271,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     speech = stt.SpeechToText();
+    getHomeData();
     super.onInit();
   }
 

@@ -18,28 +18,28 @@ class OnboardingScreensView extends GetView<OnboardingScreensController> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 255, 255, 1),
       //talk to text
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Obx(
-        () => Theme(
-          data: Theme.of(context)
-              .copyWith(highlightColor: Color.fromRGBO(215, 70, 239, 1)),
-          child: AvatarGlow(
-            animate: controller.isListening.value,
-            glowColor: Color.fromRGBO(215, 70, 239, 1),
-            endRadius: 75.0,
-            duration: const Duration(milliseconds: 2000),
-            repeatPauseDuration: const Duration(milliseconds: 100),
-            repeat: true,
-            child: FloatingActionButton(
-              backgroundColor: Color.fromRGBO(215, 70, 239, 1),
-              onPressed: () =>
-                  controller.show_create_room(context, width, height),
-              child: Icon(
-                  controller.isListening.value ? Icons.mic : Icons.mic_none),
-            ),
-          ),
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: Obx(
+      //   () => Theme(
+      //     data: Theme.of(context)
+      //         .copyWith(highlightColor: Color.fromRGBO(215, 70, 239, 1)),
+      //     child: AvatarGlow(
+      //       animate: controller.isListening.value,
+      //       glowColor: Color.fromRGBO(215, 70, 239, 1),
+      //       endRadius: 75.0,
+      //       duration: const Duration(milliseconds: 2000),
+      //       repeatPauseDuration: const Duration(milliseconds: 100),
+      //       repeat: true,
+      //       child: FloatingActionButton(
+      //         backgroundColor: Color.fromRGBO(215, 70, 239, 1),
+      //         onPressed: () =>
+      //             controller.show_create_room(context, width, height),
+      //         child: Icon(
+      //             controller.isListening.value ? Icons.mic : Icons.mic_none),
+      //       ),
+      //     ),
+      //   ),
+      // ),
       //talk to text
 
       body: Obx(
@@ -297,25 +297,25 @@ class OnboardingScreensView extends GetView<OnboardingScreensController> {
                 height: 50,
               ),
               //talk to text
-              Obx(
-                () => Row(
-                  children: [
-                    Container(
-                      padding:
-                          const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-                      child: TextHighlight(
-                        text: controller.text.value,
-                        words: controller.highlights,
-                        textStyle: const TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Obx(
+              //   () => Row(
+              //     children: [
+              //       Container(
+              //         padding:
+              //             const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
+              //         child: TextHighlight(
+              //           text: controller.text.value,
+              //           words: controller.highlights,
+              //           textStyle: const TextStyle(
+              //             fontSize: 14.0,
+              //             color: Colors.black,
+              //             fontWeight: FontWeight.w400,
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),

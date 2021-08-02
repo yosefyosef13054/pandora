@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1000341214307",
+    "project_id": "rumble-68128",
+    "storage_bucket": "rumble-68128.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000341214307:android:07ae9ec8016f29c80c9456",
+        "android_client_info": {
+          "package_name": "com.example.pandora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000341214307-qopitqk4lqdqej5bg6907qkktdg9ko85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRMQnD_aB8ECL2jT__UzpNK8rPPYKIffc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000341214307-qopitqk4lqdqej5bg6907qkktdg9ko85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

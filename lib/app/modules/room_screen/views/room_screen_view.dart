@@ -34,67 +34,80 @@ class RoomScreenView extends GetView<RoomScreenController> {
           child: Column(
             children: [
               Container(
-                height: height * .18,
+                height: height * .2,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       height: 25,
                     ),
                     InkWell(
                       onTap: () {
-                        Get.toNamed('/sittings');
+                        // Get.toNamed('/sittings');
                       },
                       child: Container(
-                        height: 70,
+                        height: 80,
                         width: width,
                         color: Color.fromRGBO(255, 248, 243, 1),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            SizedBox(
+                              width: 25,
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(Icons.arrow_back_ios)),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Spacer(),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  'Barca - Real',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: 'NunitoSans'),
+                                ),
+                                SizedBox(
+                                  height: 9,
+                                ),
+                                Text(
+                                  'member',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color.fromRGBO(150, 143, 160, 1),
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'NunitoSans'),
+                                ),
+                              ],
+                            ),
+                            Spacer(),
                             Container(
-                              margin: EdgeInsets.symmetric(horizontal: 15),
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/smallFaceIcon.svg',
-                                    placeholderBuilder:
-                                        (BuildContext context) => Container(
-                                            padding: const EdgeInsets.all(30.0),
-                                            child:
-                                                const CircularProgressIndicator()),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    'remy08',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ],
+                              height: 48,
+                              width: 48,
+                              child: Center(
+                                  child: Text(
+                                'BR',
+                                style: TextStyle(
+                                    fontSize: 19,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: 'NunitoSans'),
+                              )),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(60),
+                                color: Color.fromRGBO(214, 223, 67, 1),
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 15),
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/star.svg',
-                                    placeholderBuilder:
-                                        (BuildContext context) => Container(
-                                            padding: const EdgeInsets.all(30.0),
-                                            child:
-                                                const CircularProgressIndicator()),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    '100',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                            )
                           ],
                         ),
                       ),
@@ -118,6 +131,8 @@ class RoomScreenView extends GetView<RoomScreenController> {
                         itemBuilder: (context, index) {
                           Rx<IconData> playBtn = Icons.play_arrow.obs;
                           Rx<Duration> _position = (Duration()).obs;
+                          Rx<Duration> _musicLength = (Duration()).obs;
+                          String recordTime = '';
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -510,12 +525,13 @@ class RoomScreenView extends GetView<RoomScreenController> {
                           : InkWell(
                               onTap: () {
                                 controller.stopRecord();
-                                //add to list
+                                //add to listdads
                                 controller.assetsAudioPlayerlist
                                     .add(AssetsAudioPlayer());
                                 controller.paths
                                     .add(controller.recordFilePath.value);
                                 controller.durationList.add(_musicLength.value);
+                                controller.sendaudio(_musicLength.value);
                                 //add to list
                               },
                               child: Container(

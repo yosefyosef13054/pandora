@@ -1,8 +1,11 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:pandora/app/modules/room_screen/views/room_screen_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -10,10 +13,13 @@ import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:toast/toast.dart';
+import '../../dio_api.dart';
+import 'package:dio/dio.dart' as dio;
 
 class RoomScreenController extends GetxController {
   //TODO: Implement RoomScreenController
+  final http = Get.find<HttpService>();
+  var roomid;
 
   final count = 0.obs;
 
@@ -88,9 +94,92 @@ class RoomScreenController extends GetxController {
   var paths = List<String>().obs;
   var assetsAudioPlayerlist = List<AssetsAudioPlayer>().obs;
   var durationList = List<Duration>().obs;
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  void initroom() async {
+    roomid = Get.arguments['room_id'].toString();
+    print(roomid);
+    try {
+      var response = await http.postUrl('room/users', {"room_id": roomid});
+      print(response.data);
+
+      //    SignUpRequest userdata = SignUpRequest.fromJson(response.data);
+
+    } catch (e) {
+      print(e);
+    }
+
+    _firebaseMessaging.configure(onMessage: (data) {
+      print('onmassage');
+      print('111111111111111');
+      print(data['data']['url']);
+      print('111111111111111');
+      assetsAudioPlayerlist.add(AssetsAudioPlayer());
+      paths.add(data['data']['url']);
+      // durationList.add(_musicLength.value);
+      return null;
+    }, //onLaunch
+        onLaunch: (data) {
+      print(data);
+      print('onLaunch');
+      return null;
+    }, //onResume
+        onResume: (data) {
+      print(data);
+      print('data');
+      return null;
+    });
+  }
+
+  double uploading;
+  var isuploading = false.obs;
+  progressFn(int rec, int total) {
+    uploading = (rec / total);
+  }
+
+  sendaudio(_musicLength) async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String pushtoken = prefs.getString("token");
+    // print(pushtoken);
+    try {
+      // isuploading.value = true;
+      String fileName1 = recordFilePath.value.split('/').last;
+
+      // print(int.parse(_musicLength.toString()));
+
+      print('11111111111111');
+      print(recordFilePath.value);
+      print(fileName1);
+      print(roomid);
+      print('11111111111111');
+      dio.FormData formData = await dio.FormData.fromMap({
+        'room_id': roomid,
+        'duration': 2,
+        'message': await dio.MultipartFile.fromFile(recordFilePath.value,
+            filename: fileName1),
+      });
+
+      // // print(uploadList.map((key, value) => value));
+      var save = await http.postUrlUpload('send/message', formData,
+          onSendProgress: progressFn, onRecieveProgress: progressFn);
+      print(save.data);
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: 'Error'.tr,
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 0,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      // isuploading.value = false;
+      // print(e.response.data);
+    }
+    update();
+  }
 
   @override
   void onInit() {
+    initroom();
     super.onInit();
   }
 
@@ -144,7 +233,14 @@ class AudioMessageComponents {
       );
 
   static onPlayRecordError(context) {
-    Toast.show("audio-error-tittle".tr, context);
+    Fluttertoast.showToast(
+        msg: 'error',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 0,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
   static checkAudioPathList(String path, List<AssetsAudioPlayer> myPlayer,

@@ -34,7 +34,7 @@ class RoomScreenView extends GetView<RoomScreenController> {
           child: Column(
             children: [
               Container(
-                height: height * .2,
+                height: height * .25,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

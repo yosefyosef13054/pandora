@@ -26,10 +26,16 @@ class RoomScreenController extends GetxController {
   static RxInt recordNum = RxInt(0);
   static RxString recordTime = RxString("");
   final StopWatchTimer stopWatchTimer = StopWatchTimer();
+  Record _audioRecorder = Record();
 
-  static Future<bool> checkPermission() async {
-    if (!await Permission.microphone.isGranted) {
-      PermissionStatus status = await Permission.microphone.request();
+  Future<bool> checkPermission() async {
+    print("this is permaion ${!(await Permission.microphone.isGranted)}");
+    bool hasPermission = await _audioRecorder.hasPermission();
+    if (!hasPermission) {
+      PermissionStatus status =
+          await Permission.microphone.request().catchError((onError) {
+        print("error from get permission$onError");
+      });
       if (status != PermissionStatus.granted) {
         return false;
       }
@@ -40,6 +46,7 @@ class RoomScreenController extends GetxController {
   var recordFilePath = ''.obs;
   var isRecording = false.obs;
   var avaToPlayRecord = false.obs;
+
   static Future<String> getFilePath() async {
     Directory storageDirectory = await getApplicationDocumentsDirectory();
     String sdPath = storageDirectory.path + "/record";
@@ -55,17 +62,21 @@ class RoomScreenController extends GetxController {
     print('test');
     bool hasPermission = await checkPermission();
     print('test');
+    print("we have Permission $hasPermission");
+
     if (hasPermission) {
+      print("we have Permission $hasPermission");
       recordFilePath.value = "";
-      avaToPlayRecord(false);
+      avaToPlayRecord.value = false;
       stopWatchTimer.onExecute.add(StopWatchExecute.start);
       recordFilePath.value = await getFilePath();
       // print("This is Path: ${recordFilePath.value}");
-      await Record.start(
-        path: recordFilePath.value, // required
-        encoder: AudioEncoder.AAC, // by default
-        bitRate: 128000,
-      );
+      await _audioRecorder
+          .start(
+      )
+          .catchError((error) {
+        print("this is  $error");
+      });
       isRecording.value = true;
     } else {
       // print("No microphone permission");
@@ -77,7 +88,7 @@ class RoomScreenController extends GetxController {
   var assetsAudioPlayer = AssetsAudioPlayer().obs;
 
   stopRecord() async {
-    Record.stop();
+    _audioRecorder.stop();
     stopWatchTimer.onExecute.add(StopWatchExecute.reset);
     // recording(false);
     // assetsAudioPlayer.value.open(
@@ -94,7 +105,8 @@ class RoomScreenController extends GetxController {
   var paths = List<String>().obs;
   var assetsAudioPlayerlist = List<AssetsAudioPlayer>().obs;
   var durationList = List<Duration>().obs;
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
   void initroom() async {
     roomid = Get.arguments['room_id'].toString();
     print(roomid);
@@ -108,30 +120,43 @@ class RoomScreenController extends GetxController {
       print(e);
     }
 
-    _firebaseMessaging.configure(onMessage: (data) {
-      print('onmassage');
-      print('111111111111111');
-      print(data['data']['url']);
-      print('111111111111111');
-      assetsAudioPlayerlist.add(AssetsAudioPlayer());
-      paths.add(data['data']['url']);
-      // durationList.add(_musicLength.value);
-      return null;
-    }, //onLaunch
-        onLaunch: (data) {
-      print(data);
-      print('onLaunch');
-      return null;
-    }, //onResume
-        onResume: (data) {
-      print(data);
-      print('data');
-      return null;
-    });
+    FirebaseMessaging.onMessage.listen(
+      (data) {
+        print('onmassage');
+        print('111111111111111');
+        print(data.data['data']['url']);
+        print('111111111111111');
+        assetsAudioPlayerlist.add(AssetsAudioPlayer());
+        paths.add(data.data['data']['url']);
+        // durationList.add(_musicLength.value);
+        return null;
+      }, //onLaunch
+    );
+    // _firebaseMessaging.configure(onMessage: (data) {
+    //   print('onmassage');
+    //   print('111111111111111');
+    //   print(data['data']['url']);
+    //   print('111111111111111');
+    //   assetsAudioPlayerlist.add(AssetsAudioPlayer());
+    //   paths.add(data['data']['url']);
+    //   // durationList.add(_musicLength.value);
+    //   return null;
+    // }, //onLaunch
+    //     onLaunch: (data) {
+    //   print(data);
+    //   print('onLaunch');
+    //   return null;
+    // }, //onResume
+    //     onResume: (data) {
+    //   print(data);
+    //   print('data');
+    //   return null;
+    // });
   }
 
   double uploading;
   var isuploading = false.obs;
+
   progressFn(int rec, int total) {
     uploading = (rec / total);
   }
@@ -190,6 +215,7 @@ class RoomScreenController extends GetxController {
 
   @override
   void onClose() {}
+
   void increment() => count.value++;
 }
 

@@ -13,12 +13,13 @@ import 'package:get/get.dart';
 import 'dart:convert';
 
 void main() async {
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   WidgetsFlutterBinding.ensureInitialized();
 
   await Get.putAsync(() => HttpService().init());
   //uncomment
   await Firebase.initializeApp();
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
   //uncomment
   // String token = "";
   // SharedPreferences prefs = await SharedPreferences.getInstance();

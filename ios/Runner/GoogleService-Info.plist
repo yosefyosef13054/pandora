@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1000341214307-rh82c2bd6gj3fi3m1uq9fm5a68mvka17.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1000341214307-rh82c2bd6gj3fi3m1uq9fm5a68mvka17</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAGLTCAtZVvFmshGOAltd5CnV_aMBPquUw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1000341214307</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.rumple.flutter</string>
+	<key>PROJECT_ID</key>
+	<string>rumble-68128</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rumble-68128.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1000341214307:ios:69fd3d6e9e9256b00c9456</string>
+</dict>
+</plist>

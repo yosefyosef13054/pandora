@@ -9,7 +9,7 @@ import 'dart:convert';
 
 class SplashScreenController extends GetxController {
   //TODO: Implement SplashScreenController
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   String pushToken;
   final count = 0.obs;
   @override

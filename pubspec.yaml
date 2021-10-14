@@ -11,16 +11,15 @@ dependencies:
   speech_to_text: ^2.3.0
   highlight_text: ^0.7.2
   avatar_glow: ^1.2.0
-  assets_audio_player: ^3.0.2
-  record:
+  assets_audio_player:
+  record: ^3.0.0
   stop_watch_timer:
   permission_handler:
   toast:
   shared_preferences: 
-  firebase_analytics: ^5.0.11
-  flutter_local_notifications: ^4.0.1
+  flutter_local_notifications:
   socket_io_client: ^0.9.12
-  firebase_core: ^0.5.3
+  firebase_core:
   firebase_messaging: 
   fluttertoast: ^7.1.6
   dio: 

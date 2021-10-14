@@ -10,6 +10,7 @@ class RecordAudio {
   static RxString recordTime = RxString("");
   static RxString recordfilePath = RxString("");
   static final StopWatchTimer stopWatchTimer = StopWatchTimer();
+  final _audioRecorder = Record();
 
   static Future<bool> checkPermission() async {
     if (!await Permission.microphone.isGranted) {
@@ -21,13 +22,13 @@ class RecordAudio {
     return true;
   }
 
-  static startRecord() async {
+   startRecord() async {
     bool hasPermission = await checkPermission();
     if (hasPermission) {
       stopWatchTimer.onExecute.add(StopWatchExecute.start);
       recordfilePath.value = await getFilePath();
       print("This is Path: ${recordfilePath.value}");
-      await Record.start(
+      await _audioRecorder.start(
         path: recordfilePath.value, // required
         encoder: AudioEncoder.AAC, // by default
         bitRate: 128000,
@@ -37,7 +38,7 @@ class RecordAudio {
     }
   }
 
-  static Future<String> getFilePath() async {
+   Future<String> getFilePath() async {
     Directory storageDirectory = await getApplicationDocumentsDirectory();
     String sdPath = storageDirectory.path + "/record";
     var d = Directory(sdPath);
@@ -47,8 +48,8 @@ class RecordAudio {
     return sdPath + "/rumble_${recordNum.value++}.mp3";
   }
 
-  static Future stopRecord(RxBool recording) async {
-    Record.stop();
+   Future stopRecord(RxBool recording) async {
+    _audioRecorder.stop();
     stopWatchTimer.onExecute.add(StopWatchExecute.reset);
     recording(false);
     return true;

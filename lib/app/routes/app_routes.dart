@@ -9,6 +9,7 @@ abstract class Routes {
   static const ONBOARDING_SCREENS = _Paths.ONBOARDING_SCREENS;
   static const SITTINGS = _Paths.SITTINGS;
   static const ROOM_SCREEN = _Paths.ROOM_SCREEN;
+  static const TERMS_CONDITIONS = _Paths.TERMS_CONDITIONS;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const ONBOARDING_SCREENS = '/onboarding-screens';
   static const SITTINGS = '/sittings';
   static const ROOM_SCREEN = '/room-screen';
+  static const TERMS_CONDITIONS = '/terms-conditions';
 }

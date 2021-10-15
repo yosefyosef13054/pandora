@@ -1,16 +1,18 @@
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:record/record.dart';
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:flutter_sound_platform_interface/flutter_sound_recorder_platform_interface.dart';
 
 class RecordAudio {
   static RxInt recordNum = RxInt(0);
   static RxString recordTime = RxString("");
   static RxString recordfilePath = RxString("");
   static final StopWatchTimer stopWatchTimer = StopWatchTimer();
-  final _audioRecorder = Record();
+  FlutterSoundRecorder _mRecorder = FlutterSoundRecorder();
 
   static Future<bool> checkPermission() async {
     if (!await Permission.microphone.isGranted) {
@@ -28,9 +30,10 @@ class RecordAudio {
       stopWatchTimer.onExecute.add(StopWatchExecute.start);
       recordfilePath.value = await getFilePath();
       print("This is Path: ${recordfilePath.value}");
-      await _audioRecorder.start(
-        path: recordfilePath.value, // required
-        encoder: AudioEncoder.AAC, // by default
+      await _mRecorder.startRecorder(
+        toFile: recordfilePath.value,
+        codec: Codec.aacMP4,
+        audioSource: AudioSource.microphone, // by default
         bitRate: 128000,
       );
     } else {
@@ -49,7 +52,7 @@ class RecordAudio {
   }
 
    Future stopRecord(RxBool recording) async {
-    _audioRecorder.stop();
+     _mRecorder.startRecorder();
     stopWatchTimer.onExecute.add(StopWatchExecute.reset);
     recording(false);
     return true;

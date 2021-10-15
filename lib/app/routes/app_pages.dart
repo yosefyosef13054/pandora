@@ -10,6 +10,8 @@ import 'package:pandora/app/modules/sittings/bindings/sittings_binding.dart';
 import 'package:pandora/app/modules/sittings/views/sittings_view.dart';
 import 'package:pandora/app/modules/splash_screen/bindings/splash_screen_binding.dart';
 import 'package:pandora/app/modules/splash_screen/views/splash_screen_view.dart';
+import 'package:pandora/app/modules/termsConditions/bindings/terms_conditions_binding.dart';
+import 'package:pandora/app/modules/termsConditions/views/terms_conditions_view.dart';
 
 part 'app_routes.dart';
 
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.ROOM_SCREEN,
       page: () => RoomScreenView(),
       binding: RoomScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.TERMS_CONDITIONS,
+      page: () => TermsConditionsView(),
+      binding: TermsConditionsBinding(),
     ),
   ];
 }

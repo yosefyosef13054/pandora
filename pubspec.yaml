@@ -2,39 +2,41 @@ name: pandora
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: '>=2.7.0 <3.0.0'
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
-  get_cli: 
+  intl:
+  flutter_spinkit: "^4.1.2"
+  get_cli:
   speech_to_text: ^2.3.0
   highlight_text: ^0.7.2
   avatar_glow: ^1.2.0
   assets_audio_player:
-  record: ^3.0.0
+  flutter_sound: ^8.4.1+1
   stop_watch_timer:
   permission_handler:
   toast:
-  shared_preferences: 
+  shared_preferences:
   flutter_local_notifications:
   socket_io_client: ^0.9.12
   firebase_core:
-  firebase_messaging: 
+  firebase_messaging:
   fluttertoast: ^7.1.6
-  dio: 
+  dio:
 
 
   get: 4.1.4
-  flutter: 
+  flutter:
     sdk: flutter
   flutter_svg: ^0.22.0
 
-dev_dependencies: 
-  flutter_test: 
+dev_dependencies:
+  flutter_test:
     sdk: flutter
 
-flutter: 
+flutter:
   uses-material-design: true
   assets:
     - assets/.
@@ -45,7 +47,7 @@ flutter:
     - family: BerkshireSwash
       fonts:
         - asset: assets/fonts/BerkshireSwash-Regular.ttf
-        
+
     - family: NunitoSans
       fonts:
         - asset: assets/fonts/NunitoSans-Regular.ttf

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pandora/app/modules/dio_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'package:auto_service_manager/app/services/socket_service.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import 'dart:convert';
 
 class SplashScreenController extends GetxController {
+  final http = Get.find<HttpService>();
   //TODO: Implement SplashScreenController
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   String pushToken;
@@ -15,20 +17,26 @@ class SplashScreenController extends GetxController {
   @override
   void onInit() async {
     String token = "";
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    pushToken = await _firebaseMessaging.getToken();
+    var response =
+        await http.appget('http://attendance.rmztech.net/api/application');
+    if (response.data['application'] == 'true') {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      pushToken = await _firebaseMessaging.getToken();
 
-    /// token is auth tokne and pushtoken is firebasetoken
-    token = prefs.getString("token");
-    await prefs.setString('pushtoken', pushToken);
-    Future.delayed(Duration(seconds: 3), () {
-      prefs.containsKey("token") == false
-          ? Get.offNamed('/onboarding-screens')
-          : Get.offNamed('/home');
-      print('hello');
-      print(prefs.getString("token"));
-      print(prefs.getString("pushtoken"));
-    });
+      /// token is auth tokne and pushtoken is firebasetoken
+      token = prefs.getString("token");
+      await prefs.setString('pushtoken', pushToken);
+      Future.delayed(Duration(seconds: 1), () {
+        prefs.containsKey("token") == false
+            ? Get.offNamed('/onboarding-screens')
+            : Get.offNamed('/home');
+        print('hello');
+        print(prefs.getString("token"));
+        print(prefs.getString("pushtoken"));
+      });
+    } else {
+      print('hello there ');
+    }
 
     super.onInit();
   }

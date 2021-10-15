@@ -165,6 +165,8 @@ class OnboardingScreensController extends GetxController {
       print(userdata.data.user.token);
 
       prefs.setString('token', userdata.data.user.token);
+      prefs.setString('username', slectedusername.value);
+
       Navigator.restorablePushReplacementNamed(context, '/home');
     } catch (e) {
       print(e.response.data);

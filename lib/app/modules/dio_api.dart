@@ -71,9 +71,7 @@ class HttpService extends GetxService {
       {Function onSendProgress, Function onRecieveProgress}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     apiToken = prefs.getString("token");
-    // print(apiToken);
-    // print('URL ${urlBase + endPoint}');
-    // print(body);
+
     return dio.post(urlBase + endPoint,
         data: body,
         options: dioo.Options(
@@ -114,5 +112,11 @@ class HttpService extends GetxService {
     return dio.get(urlBase + endPoint,
         // queryParameters: body,
         options: dioo.Options(headers: {'Authorization': 'Bearer $apiToken'}));
+  }
+
+  Future<dioo.Response> appget(endPoint) async {
+    return dio.get(
+      endPoint,
+    );
   }
 }

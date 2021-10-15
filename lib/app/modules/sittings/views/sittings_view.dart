@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pandora/app/modules/termsConditions/views/terms_conditions_view.dart';
 
 import '../controllers/sittings_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -66,7 +67,7 @@ class SittingsView extends GetView<SittingsController> {
                                 width: 8,
                               ),
                               Text(
-                                'remy08',
+                                controller.username.value,
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -88,7 +89,7 @@ class SittingsView extends GetView<SittingsController> {
                                 width: 8,
                               ),
                               Text(
-                                '100',
+                                '0',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -103,6 +104,66 @@ class SittingsView extends GetView<SittingsController> {
             SizedBox(
               height: 15,
             ),
+            // Container(
+            //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+            //   // margin: EdgeInsets.symmetric(vertical: 8),
+            //   // height: 128,
+            //   width: width * .87,
+            //   decoration: BoxDecoration(
+            //     boxShadow: [
+            //       BoxShadow(
+            //         color: Color.fromRGBO(44, 39, 124, 0.1),
+            //         blurRadius: 15,
+            //         offset: Offset(0, 0),
+            //       ),
+            //     ],
+            //     borderRadius: BorderRadius.circular(15),
+            //     color: Color.fromRGBO(255, 255, 255, 1),
+            //   ),
+            //   child: Column(
+            //     children: [
+            //       // ItemListtile(
+            //       //   label: 'Notifications',
+            //       // ),
+            //       // SizedBox(
+            //       //   height: 21,
+            //       // ),
+            //       // ItemListtile(
+            //       //   label: 'Profile Appearence',
+            //       // ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 16,
+            // ),
+            // Container(
+            //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+            //   // margin: EdgeInsets.symmetric(vertical: 8),
+            //   // height: 128,
+            //   width: width * .87,
+            //   decoration: BoxDecoration(
+            //     boxShadow: [
+            //       BoxShadow(
+            //         color: Color.fromRGBO(44, 39, 124, 0.1),
+            //         blurRadius: 15,
+            //         offset: Offset(0, 0),
+            //       ),
+            //     ],
+            //     borderRadius: BorderRadius.circular(15),
+            //     color: Color.fromRGBO(255, 255, 255, 1),
+            //   ),
+            //   child: Column(
+            //     children: [
+            //       // ItemListtile(
+            //       //   label: 'Log Out',
+            //       // ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 16,
+            // ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
               // margin: EdgeInsets.symmetric(vertical: 8),
@@ -121,81 +182,31 @@ class SittingsView extends GetView<SittingsController> {
               ),
               child: Column(
                 children: [
-                  ItemListtile(
-                    label: 'Notifications',
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/terms-conditions');
+                    },
+                    child: ItemListtile(
+                      label: 'Privacy Policy',
+                    ),
                   ),
                   SizedBox(
                     height: 21,
                   ),
-                  ItemListtile(
-                    label: 'Profile Appearence',
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/terms-conditions');
+                    },
+                    child: ItemListtile(
+                      label: 'Terms of Conditions',
+                    ),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-              // margin: EdgeInsets.symmetric(vertical: 8),
-              // height: 128,
-              width: width * .87,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromRGBO(44, 39, 124, 0.1),
-                    blurRadius: 15,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(15),
-                color: Color.fromRGBO(255, 255, 255, 1),
-              ),
-              child: Column(
-                children: [
-                  ItemListtile(
-                    label: 'Log Out',
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-              // margin: EdgeInsets.symmetric(vertical: 8),
-              // height: 128,
-              width: width * .87,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromRGBO(44, 39, 124, 0.1),
-                    blurRadius: 15,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(15),
-                color: Color.fromRGBO(255, 255, 255, 1),
-              ),
-              child: Column(
-                children: [
-                  ItemListtile(
-                    label: 'Privacy Policy',
-                  ),
-                  SizedBox(
-                    height: 21,
-                  ),
-                  ItemListtile(
-                    label: 'Terms of Conditions',
-                  ),
-                  SizedBox(
-                    height: 21,
-                  ),
-                  ItemListtile(
-                    label: 'Feedback',
-                  ),
+                  // SizedBox(
+                  //   height: 21,
+                  // ),
+                  // ItemListtile(
+                  //   label: 'Feedback',
+                  // ),
                 ],
               ),
             )

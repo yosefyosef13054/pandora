@@ -6,6 +6,8 @@
 	<string>1000341214307-rh82c2bd6gj3fi3m1uq9fm5a68mvka17.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.1000341214307-rh82c2bd6gj3fi3m1uq9fm5a68mvka17</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1000341214307-6u5ifu9e376m715kaj625ig5jn76dcmj.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAGLTCAtZVvFmshGOAltd5CnV_aMBPquUw</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.rumple.flutter</string>
+	<string>com.pandora.flutter</string>
 	<key>PROJECT_ID</key>
 	<string>rumble-68128</string>
 	<key>STORAGE_BUCKET</key>

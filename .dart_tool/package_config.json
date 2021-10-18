@@ -27,7 +27,7 @@
     },
     {
       "name": "args",
-      "rootUri": "file:///Users/yousef/Desktop/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.1.1",
+      "rootUri": "file:///Users/yousef/Desktop/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -369,7 +369,7 @@
     },
     {
       "name": "path_drawing",
-      "rootUri": "file:///Users/yousef/Desktop/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.1",
+      "rootUri": "file:///Users/yousef/Desktop/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.1+1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -680,7 +680,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-10-16T12:01:49.591040Z",
+  "generated": "2021-10-17T19:32:56.563078Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

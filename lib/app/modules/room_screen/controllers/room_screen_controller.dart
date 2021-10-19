@@ -142,35 +142,7 @@ class RoomScreenController extends GetxController {
       print(e.response.data);
     }
 
-    // FirebaseMessaging.onMessageOpenedApp.listen(
-    //   (notification) {
-    //     print('addadadadadadadadadadadadadadad');
-    //     print(notification);
-    //     Rx<Duration> _musicLength = (Duration()).obs;
-    //     assetsAudioPlayerlist.insert(0, AssetsAudioPlayer());
-    //     paths.insert(0, notification.data['data']['url'].toString());
-    //     durationList.insert(0, _musicLength.value);
-    //     // sendaudio(_musicLength.value);
-    //     data.data.chats.insert(
-    //         0,
-    //         Chat(
-    //             username: notification.data['data']['username'].toString(),
-    //             createdAt: DateTime.parse(
-    //                 notification.data['data']['created_at'].toString())));
-    //     // data.data.chats.add(Chat(
-    //     //     username: notification['data']['username'].toString(),
-    //     //     createdAt:
-    //     //         DateTime.parse(notification['data']['created_at'].toString())));
-    //     // print('22222222222');
-    //     // print(notification['data']['created_at'].toString());
-    //     // print(paths.length);
-    //     // print('22222222222');
-
-    //     return null;
-    //   }, //onLaunch
-    // );
-
-    FirebaseMessaging.onMessage.listen(
+    FirebaseMessaging.onMessageOpenedApp.listen(
       (notification) {
         print('addadadadadadadadadadadadadadad');
         print(notification);
@@ -197,6 +169,34 @@ class RoomScreenController extends GetxController {
         return null;
       }, //onLaunch
     );
+
+    // FirebaseMessaging.onMessage.listen(
+    //   (notification) {
+    //     print('addadadadadadadadadadadadadadad');
+    //     print(notification);
+    //     Rx<Duration> _musicLength = (Duration()).obs;
+    //     assetsAudioPlayerlist.insert(0, AssetsAudioPlayer());
+    //     paths.insert(0, notification.data['data']['url'].toString());
+    //     durationList.insert(0, _musicLength.value);
+    //     // sendaudio(_musicLength.value);
+    //     data.data.chats.insert(
+    //         0,
+    //         Chat(
+    //             username: notification.data['data']['username'].toString(),
+    //             createdAt: DateTime.parse(
+    //                 notification.data['data']['created_at'].toString())));
+    //     // data.data.chats.add(Chat(
+    //     //     username: notification['data']['username'].toString(),
+    //     //     createdAt:
+    //     //         DateTime.parse(notification['data']['created_at'].toString())));
+    //     // print('22222222222');
+    //     // print(notification['data']['created_at'].toString());
+    //     // print(paths.length);
+    //     // print('22222222222');
+    //
+    //     return null;
+    //   }, //onLaunch
+    // );
   }
 
   double uploading;

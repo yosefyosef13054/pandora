@@ -27,7 +27,7 @@
     },
     {
       "name": "args",
-      "rootUri": "file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.1.1",
+      "rootUri": "file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -369,7 +369,7 @@
     },
     {
       "name": "path_drawing",
-      "rootUri": "file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.1",
+      "rootUri": "file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.1+1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -680,7 +680,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-10-16T14:08:38.974195Z",
+  "generated": "2021-10-19T07:28:29.821268Z",
   "generator": "pub",
   "generatorVersion": "2.14.0"
 }

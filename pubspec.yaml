@@ -1,5 +1,5 @@
 name: pandora
-version: 1.0.0+1
+version: 1.0.1+1
 publish_to: none
 description: A new Flutter project.
 environment:
@@ -25,6 +25,7 @@ dependencies:
   firebase_messaging:
   fluttertoast: ^7.1.6
   dio:
+  
 
 
   get: 4.1.4

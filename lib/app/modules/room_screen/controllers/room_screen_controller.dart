@@ -120,7 +120,6 @@ class RoomScreenController extends GetxController {
   var paths = List<String>().obs;
   var assetsAudioPlayerlist = List<AssetsAudioPlayer>().obs;
   var durationList = List<Duration>().obs;
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   void initroom() async {
     roomid = Get.arguments['room_id'].toString();
@@ -141,22 +140,23 @@ class RoomScreenController extends GetxController {
     } catch (e) {
       print(e.response.data);
     }
-
-    FirebaseMessaging.onMessageOpenedApp.listen(
+    String token = await FirebaseMessaging.instance.getToken();
+    print("this is token from firebase $token");
+    FirebaseMessaging.onMessage.listen(
       (notification) {
         print('addadadadadadadadadadadadadadad');
-        print(notification);
+        print(notification.data["url"]);
         Rx<Duration> _musicLength = (Duration()).obs;
         assetsAudioPlayerlist.insert(0, AssetsAudioPlayer());
-        paths.insert(0, notification.data['data']['url'].toString());
+        paths.insert(0, notification.data['url'].toString());
         durationList.insert(0, _musicLength.value);
         // sendaudio(_musicLength.value);
         data.data.chats.insert(
             0,
             Chat(
-                username: notification.data['data']['username'].toString(),
+                username: notification.data['username'].toString(),
                 createdAt: DateTime.parse(
-                    notification.data['data']['created_at'].toString())));
+                    notification.data['created_at'].toString())));
         // data.data.chats.add(Chat(
         //     username: notification['data']['username'].toString(),
         //     createdAt:

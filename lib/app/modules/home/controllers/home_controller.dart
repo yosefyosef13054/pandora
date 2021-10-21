@@ -52,7 +52,7 @@ class HomeController extends GetxController {
     loading.value = true;
     try {
       var response = await http.get('home/rooms');
-      print(response.data);
+        print(response.data);
       data = HomeData.fromJson(response.data);
       loading.value = false;
       Future.delayed(Duration(seconds: 5), () {

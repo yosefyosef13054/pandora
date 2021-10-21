@@ -20,10 +20,12 @@ class RoomScreenView extends GetView<RoomScreenController> {
   Rx<Duration> _position = (Duration()).obs;
   Rx<Duration> _musicLength = (Duration()).obs;
   var format = DateFormat('HH:mm');
+
   //with pm and am
   //var format = DateFormat('HH:mm a');
 
   String recordTime = '';
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -332,25 +334,28 @@ class RoomScreenView extends GetView<RoomScreenController> {
                                                 ),
                                               ],
                                             ),
-                                            Obx(() =>
-                                                // controller.avaToPlayRecord.value == false
-                                                //     ? SizedBox()
-                                                //     :
-                                                Column(
-                                                  children: [
-                                                    SizedBox(
-                                                      height: 25,
-                                                    ),
-                                                    AudioMessageComponents
-                                                        .buildAudioSlider(
-                                                            recordTime,
-                                                            controller
-                                                                    .assetsAudioPlayerlist[
-                                                                index],
-                                                            _musicLength.value,
-                                                            _position.value),
-                                                  ],
-                                                )),
+                                            Obx(
+                                              () =>
+                                                  // controller.avaToPlayRecord.value == false
+                                                  //     ? SizedBox()
+                                                  //     :
+                                                  Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 25,
+                                                  ),
+                                                  AudioMessageComponents
+                                                      .buildAudioSlider(
+                                                    recordTime,
+                                                    controller
+                                                            .assetsAudioPlayerlist[
+                                                        index],
+                                                    _musicLength.value,
+                                                    _position.value,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             SizedBox(
                                               width: 15,
                                             ),
@@ -831,10 +836,12 @@ class AudioSlider extends StatelessWidget {
       this.buttonColor,
       this.sliderColor,
       this.seekTo]);
+
   Duration currentPosition, duration;
   Color sliderColor, buttonColor;
   String recordTime;
   Function seekTo;
+
   @override
   Widget build(BuildContext context) {
     return PositionSeekWidget(
@@ -842,7 +849,7 @@ class AudioSlider extends StatelessWidget {
       sliderColor: sliderColor ?? Colors.grey[300],
       buttonColor: buttonColor ?? Colors.grey,
       recordTime: recordTime,
-      duration: duration ?? Duration(),
+      duration: duration ,
       seekTo: (to) {
             seekTo(to);
           } ??

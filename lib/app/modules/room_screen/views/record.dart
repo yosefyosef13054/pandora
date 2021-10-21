@@ -56,13 +56,13 @@ class RecordTime extends GetView<RoomScreenController> {
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        width: 2,
+                        width: 35,
                       ),
-                      Image.asset(
-                        'assets/images/voice.gif',
-                        color: Colors.red,
-                        width: 30,
-                      )
+                      // Image.asset(
+                      //   'assets/images/voice.gif',
+                      //   color: Colors.red,
+                      //   width: 30,
+                      // )
                     ],
                   ),
                 ],

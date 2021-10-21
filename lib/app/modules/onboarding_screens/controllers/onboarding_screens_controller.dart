@@ -151,7 +151,7 @@ class OnboardingScreensController extends GetxController {
   void submit(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String pushtoken = prefs.getString("pushtoken");
-    print(pushtoken);
+    // print(pushtoken);
     try {
       var response = await http.postUrl('user/signup', {
         "username": slectedusername.value,
@@ -159,10 +159,10 @@ class OnboardingScreensController extends GetxController {
         "age": slectedage.value,
         "device_token": pushtoken
       });
-      print(response.data);
-      print(pushtoken);
+      // print(response.data);
+      // print(pushtoken);
       SignUpRequest userdata = SignUpRequest.fromJson(response.data);
-      print(userdata.data.user.token);
+      // print(userdata.data.user.token);
 
       prefs.setString('token', userdata.data.user.token);
       prefs.setString('username', slectedusername.value);

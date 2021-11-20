@@ -451,7 +451,7 @@ class RoomScreenView extends GetView<RoomScreenController> {
                                 bottomLeft: Radius.circular(8),
                                 topLeft: Radius.circular(8),
                                 topRight: Radius.circular(100),
-                                bottomRight: Radius.circular(100)),
+                                  bottomRight: Radius.circular(100)),
                             color: controller.isRecording.value == false
                                 ? Color.fromRGBO(253, 252, 255, 1)
                                 : Color.fromRGBO(253, 252, 255, 1),
@@ -845,7 +845,7 @@ class AudioSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PositionSeekWidget(
-      currentPosition: currentPosition ?? Duration(),
+      currentPosition: currentPosition ,
       sliderColor: sliderColor ?? Colors.grey[300],
       buttonColor: buttonColor ?? Colors.grey,
       recordTime: recordTime,

@@ -79,7 +79,7 @@ class HomeView extends GetView<HomeController> {
                                           //todo
                                           Obx(
                                             () => Text(
-                                              controller.username.value??"",
+                                              controller.username.value ?? "",
                                               style: TextStyle(fontSize: 16),
                                             ),
                                           ),
@@ -387,12 +387,13 @@ class HomeRoomCard extends StatelessWidget {
                   width: 48,
                   child: Center(
                       child: Text(
-                    data.value.name[0] + data.value.name[2],
+                    data.value.name[0],
                     style: TextStyle(
                         fontSize: 19,
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
                         fontFamily: 'NunitoSans'),
+                    overflow: TextOverflow.ellipsis,
                   )),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(60),
@@ -405,7 +406,7 @@ class HomeRoomCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data.value.name.length > 30
+                      data.value.name.length > 20
                           ? data.value.name.substring(0, 20) + '...'
                           : data.value.name,
                       style: TextStyle(
@@ -430,13 +431,14 @@ class HomeRoomCard extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     controller.show_send_voicenote_to_aroom(
-                        context,
-                        width,
-                        height,
-                        data.value.id,
-                        data.value.favourites,
-                        data.value.members,
-                        data.value.name);
+                      context,
+                      width,
+                      height,
+                      data.value.id,
+                      data.value.favourites,
+                      data.value.members,
+                      data.value.name,
+                    );
                     // Get.back();
                   },
                   child: SvgPicture.asset(

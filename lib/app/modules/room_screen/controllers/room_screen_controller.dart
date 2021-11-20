@@ -353,12 +353,15 @@ class AudioMessageComponents {
   static checkAudioPath(String message, AssetsAudioPlayer myPlayer,
       Rx<Duration> position, Rx<Duration> musicLength) async {
     if (message.contains('https') == false) {
+      print("hi in play song ");
+
       myPlayer.stop();
       myPlayer.open(
         Audio.file(message),
         showNotification: true,
       );
     } else {
+      print("hi in play song ");
       myPlayer.stop();
       await myPlayer.open(
         Audio.network(

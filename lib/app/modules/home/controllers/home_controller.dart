@@ -4,9 +4,7 @@ import 'dart:math';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter_sound/flutter_sound.dart';
-import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 
-import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pandora/app/modules/dio_api.dart';
@@ -52,7 +50,7 @@ class HomeController extends GetxController {
     loading.value = true;
     try {
       var response = await http.get('home/rooms');
-        print(response.data);
+      print(response.data);
       data = HomeData.fromJson(response.data);
       loading.value = false;
       Future.delayed(Duration(seconds: 5), () {
@@ -117,7 +115,7 @@ class HomeController extends GetxController {
       if (available) {
         isListening.value = true;
         await speech.listen(
-            listenFor: Duration(seconds: 10),
+            listenFor: Duration(seconds: 4),
             onResult: (val) {
               text.value = val.recognizedWords;
               if (val.hasConfidenceRating && val.confidence > 0) {
@@ -217,11 +215,26 @@ class HomeController extends GetxController {
       print(response.data);
 
       getHomeData();
-      text.value = 'Record room name';
+      confirmtext.value = true;
       //    SignUpRequest userdata = SignUpRequest.fromJson(response.data);
       Navigator.pop(context);
       // Navigator.restorablePushReplacementNamed(context, '/home');
     } catch (e) {
+      showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                content: Text(
+                    "sorry but there is room with this name already. ",
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'NunitoSans')),
+              ));
+
+      print("e.response.data");
       print(e.response.data);
     }
   }

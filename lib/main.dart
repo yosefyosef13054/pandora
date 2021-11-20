@@ -30,6 +30,7 @@ void main() async {
 
   runApp(
     GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Application",
       theme: ThemeData(
           // primarySwatch: Colors.yellow,
